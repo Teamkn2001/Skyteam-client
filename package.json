@@ -12,6 +12,8 @@
   "dependencies": {
     "@react-spring/web": "^9.7.5",
     "@tailwindcss/vite": "^4.0.0",
+    "@tanstack/react-query": "^5.65.1",
+    "@tanstack/react-query-devtools": "^5.65.1",
     "axios": "^1.7.9",
     "framer-motion": "^11.18.2",
     "joi": "^17.13.3",

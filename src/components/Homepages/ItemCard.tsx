@@ -1,19 +1,19 @@
+import { ItemCardProps } from "../../types/items";
 
-export default function ItemCard() {
+export default function ItemCard({ name = "name", description = "detail", image} : ItemCardProps) {
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
-      <figure className="px-10 pt-10">
+    <div className="card bg-base-100 w-96 shadow-sm border-2 border-base-300 hover:border-primary transition-colors duration-500 group">
+      <figure className="px-6 pt-6 lg:px-10 lg:pt-10 transition-transform duration-700 group-hover:scale-105">
         <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+          src={image}
           alt="Shoes"
-          className="rounded-xl"
+          className="rounded-xl "
         />
       </figure>
       <div className="card-body items-center text-center">
-        <h2 className="card-title">Card Title</h2>
+        <h2 className="card-title">{name}</h2>
         <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
+          {description}
         </p>
         <div className="card-actions">
           <button

@@ -30,7 +30,14 @@ export default function CarouselSlider() {
         dotListClass="custom-dot-list"
         itemClass="carousel-item"
       >
-        <div className="w-full h-[300px] md:h-[400px] lg:h-[500px]">
+        <div 
+         onClick={() => {
+          const modal = document.getElementById(
+            "my_modal_4"
+          ) as HTMLDialogElement;
+          modal?.showModal();
+        }}
+        className="w-full h-[300px] md:h-[400px] lg:h-[500px] hover:cursor-pointer">
           <img
             src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
             alt="First slide"

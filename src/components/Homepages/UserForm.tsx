@@ -53,8 +53,8 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             required
             placeholder="Username"
             pattern="[A-Za-z][A-Za-z0-9\-]*"
-            minleng="3"
-            maxlength="30"
+            minLength={3}
+            maxLength={30}
             title="Only letters, numbers or dash"
           />
         </label>
@@ -116,8 +116,8 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             required
             placeholder="Phone"
             pattern="[0-9]*"
-            minlength="10"
-            maxlength="10"
+            minLength={10}
+            maxLength={10}
             title="Must be 10 digits"
           />
         </label>
