@@ -1,60 +1,83 @@
 import UserContactModal from "../components/Homepages/UserContactModal";
-import UserForm from "../components/Homepages/UserForm";
-import SplitText from "../animations/Components/SplitText1";
 import ItemCard from "../components/Homepages/ItemCard";
 import CarouselSlider from "../components/Homepages/CarouselSlider";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getItems } from "../API/guestAPI";
+import { useQuery } from "@tanstack/react-query";
+import { get4Items, getItems } from "../API/guestAPI";
 import { Item } from "../types/items";
+import { useState } from "react";
+import "animate.css";
+import Awards from "../components/Homepages/Awards";
+import "react-vertical-timeline-component/style.min.css";
+import Timeline from "../components/Homepages/Timeline";
+import Greeting from "../components/Homepages/Greeting";
+import Services from "../components/Homepages/Services";
+import Ending from "../components/Homepages/Ending";
 
 export default function Homepage() {
-  const queryClient = useQueryClient(); // use for validate
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
   const itemQuery = useQuery({
     queryKey: ["items"],
     queryFn: async () => await getItems(),
   });
 
-  console.log(itemQuery.data);
+  const itemQuery2 = useQuery({
+    queryKey: ["items2"],
+    queryFn: async () => await get4Items(),
+  });
 
-  if (itemQuery.isLoading) return <div className="h-screen">Loading...</div>;
-  if (itemQuery.isError)
+  if (itemQuery.isLoading || itemQuery2.isLoading)
+    return <div className="h-screen"></div>;
+  if (itemQuery.isError || itemQuery2.isError)
     return (
       <div className="h-screen">Error: {JSON.stringify(itemQuery.error)}</div>
     );
 
   return (
-    <div className="flex flex-col items-center justify-center mt-[2rem] lg:mt-[4rem]">
-      <SplitText
-        text="Skyteam Properties"
-        className="text-3xl font-semibold text-center"
-        delay={100}
-        animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
-        animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-        // easing="easeOutCubic"
-        threshold={0.2}
-        rootMargin="-50px"
-        // onLetterAnimationComplete={handleAnimationComplete}
-      />
+    <div className="flex flex-col items-center justify-center mt-[2rem] lg:mt-[4rem] lg:mx-4">
+      <Greeting />
 
-      <div className="w-full lg:w-[85%]  my-4 lg:my-8 ">
-        <CarouselSlider />
+     <Services />
+
+      <div className="w-full lg:w-[85%] flex justify-center items-center mb-4 lg:my-8 ">
+        <CarouselSlider
+          itemSlide={itemQuery2.data}
+          setSelectedItem={setSelectedItem}
+        />
       </div>
 
-      <div className="flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:gap-10 justify-center items-center">
-      {itemQuery?.data.items.map((item: Item) => (
-          <ItemCard name={item.name} image={item.image} description={item.description} />
-      ))}
+      <Awards />
+
+      <div className="w-full lg:w-[75%] px-8 mt-4 lg:mt-8 mb-8 hover:scale-105 duration-300 ">
+        <div className="w-full h-full bg-black/85 text-white p-6 lg:p-10">
+          <p className="indent-6 text-sm lg:text-lg ">
+            we take pride in delivering world-class properties and exceptional
+            service. Our dedication to quality, innovation, and customer
+            satisfaction has been recognized with prestigious industry awards.
+          </p>
+        </div>
       </div>
 
-      <div className="flex flex-col  lg:flex-row lg:flex-wrap  gap-4 justify-center items-center">
-        {/*        
-        <ItemCard />
-        <ItemCard />
-        <ItemCard /> */}
-        <UserContactModal />
+      <div>
+        <h1 className="text-xl lg:text-3xl font-bold">
+          Our Premium Real Estate
+        </h1>
       </div>
 
+      <div className="flex flex-col lg:flex-row lg:flex-wrap gap-4 mt-4 lg:gap-10 justify-center items-center">
+        {itemQuery?.data.map((item: Item) => (
+          <ItemCard
+            key={item.id}
+            item={item}
+            setSelectedItem={setSelectedItem}
+          />
+        ))}
+      </div>
+      <Timeline />
+
+      <Ending />
+
+      {selectedItem && <UserContactModal selectedItem={selectedItem} />}
     </div>
   );
 }

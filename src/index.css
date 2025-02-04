@@ -1,43 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-:root {
-  /* Primary Colors - Main Blue Shades */
-  --primary-50: #f0f7ff;
-  --primary-100: #e0f0ff;
-  --primary-200: #b9ddff;
-  --primary-300: #7cc2ff;
-  --primary-400: #3aa1ff;
-  --primary-500: #1a7fff;    /* Main Primary Color */
-  --primary-600: #0062e6;
-  --primary-700: #004ebd;
-  --primary-800: #003c8f;
-  --primary-900: #002a66;
-
-  /* Secondary Colors - Complementary Blues */
-  --secondary-50: #f5f8ff;
-  --secondary-100: #edf2ff;
-  --secondary-200: #dee8ff;
-  --secondary-300: #c4d4ff;
-  --secondary-400: #96b2ff;
-  --secondary-500: #6b8eff;   /* Main Secondary Color */
-  --secondary-600: #4a6ce6;
-  --secondary-700: #3654bf;
-  --secondary-800: #253c8f;
-  --secondary-900: #1a2b66;
-
-  /* Popup/Modal Colors */
-  --popup-background: rgba(255, 255, 255, 0.98);
-  --popup-border: #e5e9ff;
-  --popup-shadow: rgba(17, 24, 39, 0.1);
-  --popup-overlay: rgba(15, 23, 42, 0.3);
-
-  /* Additional UI Colors */
-  --success: #22c55e;
-  --warning: #eab308;
-  --error: #ef4444;
-  --info: #3b82f6;
-}
 
 /* carousel-styles.css */
 .custom-dot-list {
@@ -56,3 +19,11 @@
   background: white; /* active dot color */
 }
 
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
