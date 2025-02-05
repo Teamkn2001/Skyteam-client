@@ -30,14 +30,18 @@ export default function Homepage() {
     return <div className="h-screen"></div>;
   if (itemQuery.isError || itemQuery2.isError)
     return (
-      <div className="h-screen">Error: {JSON.stringify(itemQuery.error)}</div>
+      <div className="h-screen flex justify-center items-center">
+        <h1 className="text-black text-4xl font-bold">
+          Error: Something went wrong naja
+        </h1>
+      </div>
     );
 
   return (
     <div className="flex flex-col items-center justify-center mt-[2rem] lg:mt-[4rem] lg:mx-4">
       <Greeting />
 
-     <Services />
+      <Services />
 
       <div className="w-full lg:w-[85%] flex justify-center items-center mb-4 lg:my-8 ">
         <CarouselSlider

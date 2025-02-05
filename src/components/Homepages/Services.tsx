@@ -24,8 +24,8 @@ export default function Services() {
   return (
     <>
       <div className="w-full my-6" ref={ref}>
-        <div className=" ml-8 p-4 lg:p-4 lg:pr-10">
-          <h1 className="text-xl lg:text-2xl font-bold">Our services</h1>
+        <div className=" ml-8 p-4 lg:p-6 lg:pr-10 text-center lg:text-left">
+          <h1 className="text-xl lg:text-3xl font-bold">Our services</h1>
         </div>
 
         <div className="w-[93%] flex lg:flex-wrap overflow-y-scroll gap-2 lg:gap-6  lg:p-4 ml-[2rem] scrollbar-hide ">
