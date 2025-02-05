@@ -12,7 +12,6 @@ export const get4Items = async () => {
 }
 
 export const bookItem = async (bookingRequest : BookingRequest) => {
-    console.log(bookingRequest)
     const res = await axios.post("/createBooking", bookingRequest)
     return res.data
 }
