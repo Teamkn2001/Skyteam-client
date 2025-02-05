@@ -79,6 +79,28 @@ export default function UserBookingForm({
       isValid = false;
     }
 
+    if (!bookingForm.bookingDate) {
+      newErrors.bookingDate = "Viewing date is required";
+      isValid = false;
+    } else {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Reset time to start of day
+
+      const selectedDate = new Date(bookingForm.bookingDate);
+      selectedDate.setHours(0, 0, 0, 0); // Reset time to start of day
+
+      const sevenDaysFromNow = new Date(today);
+      sevenDaysFromNow.setDate(today.getDate() + 7);
+
+      if (selectedDate < today) {
+        newErrors.bookingDate = "Viewing date cannot be in the past";
+        isValid = false;
+      } else if (selectedDate > sevenDaysFromNow) {
+        newErrors.bookingDate = "Viewing date cannot exceed 7 days from today";
+        isValid = false;
+      }
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -106,11 +128,6 @@ export default function UserBookingForm({
         await bookItem(bookingRequest);
         toast.success("Booking request sent successfully");
 
-        const modal = document.getElementById(
-          "my_modal_4"
-        ) as HTMLDialogElement;
-        if (modal) modal.close();
-
         setBookingForm({
           username: "",
           email: "",
@@ -119,6 +136,10 @@ export default function UserBookingForm({
           bookingDate: null,
         });
 
+        const modal = document.getElementById(
+          "my_modal_4"
+        ) as HTMLDialogElement;
+        if (modal) modal.close();
       } catch (error: any) {
         return toast.error(error.response.data.message);
       } finally {
@@ -145,6 +166,12 @@ export default function UserBookingForm({
                 bookingForm.bookingDate
                   ? bookingForm.bookingDate.toISOString().split("T")[0]
                   : ""
+              }
+              min={new Date().toISOString().split("T")[0]}
+              max={
+                new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+                  .toISOString()
+                  .split("T")[0]
               }
               onChange={handleDateChange}
               className={`

@@ -1,7 +1,14 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+.custom-toast {
+  z-index: 99999 !important;
+}
 
+/* Make sure toasts are always on top */
+.Toastify__toast-container {
+  z-index: 99999 !important;
+}
 /* carousel-styles.css */
 .custom-dot-list {
   bottom: 20px !important; /* Move dots higher */

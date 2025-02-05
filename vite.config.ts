@@ -1,8 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import postcssPlugin from '@tailwindcss/postcss'
+import autoprefixer from 'autoprefixer'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [ react(),  tailwindcss()],
+  plugins: [react()],
+  css: {
+    postcss: {
+      plugins: [
+        postcssPlugin(),
+        autoprefixer()
+      ],
+    },
+  },
+  resolve: {
+    mainFields: ['module', 'main', 'jsnext:main', 'jsnext'],
+  },
+  optimizeDeps: {
+    include: ['prop-types', 'react-vertical-timeline-component']
+  }
 })
