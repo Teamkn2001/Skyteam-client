@@ -23,7 +23,7 @@ export default function Services() {
 
   return (
     <>
-      <div className="w-full my-6" ref={ref}>
+      <div className="w-full my-6 lg:bg-[#8F8061]/10 " ref={ref}>
         <div className=" ml-8 p-4 lg:p-6 lg:pr-10 text-center lg:text-left">
           <h1 className="text-xl lg:text-3xl font-bold">Our services</h1>
         </div>
